@@ -1,5 +1,54 @@
-import {Link} from 'react-router-dom';import usePage from '../hooks/usePage.js';import Reveal from '../components/Reveal.jsx';import Ph from '../components/Ph.jsx';import Cta from '../components/Cta.jsx';import {SERVICES} from '../data.js';
-export default function Services(){usePage('Services','Garden design, landscaping, lawn care, seasonal planting and garden maintenance from GreenNest.');
-return(<><div className="page-head"><div className="wrap"><h1>Our services</h1><p>Jump to a service: {SERVICES.map((s,i)=><span key={s.id}>{i>0&&' · '}<Link to={`/services#${s.id}`}>{s.name}</Link></span>)}</p></div></div>
-{SERVICES.map((s,i)=><section key={s.id} id={s.id} className={i%2?'alt':''}><Reveal className="wrap split"><div><h2>{s.name}</h2><p>{s.blurb}</p><p><strong>Best for:</strong> {s.who}</p><h3>Includes</h3><ul>{s.inc.map(x=><li key={x}>{x}</li>)}</ul>
-<Link className="btn" to="/contact#consult">Ask about {s.name.toLowerCase()}</Link></div><Ph label={`${s.name} project example`} t={s.t}/></Reveal></section>)}<Cta/></>)}
+import { Link } from "react-router-dom";
+import usePage from "../hooks/usePage.js";
+import Reveal from "../components/Reveal.jsx";
+import Ph from "../components/Ph.jsx";
+import Cta from "../components/Cta.jsx";
+import { SERVICES } from "../data.js";
+export default function Services() {
+  usePage(
+    "Services",
+    "Garden design, landscaping, lawn care, seasonal planting and garden maintenance from GreenNest.",
+  );
+  return (
+    <>
+      <div className="page-head">
+        <div className="wrap">
+          <h1>Our services</h1>
+          <p>
+            Jump to a service:{" "}
+            {SERVICES.map((s, i) => (
+              <span key={s.id}>
+                {i > 0 && " · "}
+                <Link to={`/services#${s.id}`}>{s.name}</Link>
+              </span>
+            ))}
+          </p>
+        </div>
+      </div>
+      {SERVICES.map((s, i) => (
+        <section key={s.id} id={s.id} className={i % 2 ? "alt" : ""}>
+          <Reveal className="wrap split">
+            <div>
+              <h2>{s.name}</h2>
+              <p>{s.blurb}</p>
+              <p>
+                <strong>Best for:</strong> {s.who}
+              </p>
+              <h3>Includes</h3>
+              <ul>
+                {s.inc.map((x) => (
+                  <li key={x}>{x}</li>
+                ))}
+              </ul>
+              <Link className="btn" to="/contact#consult">
+                Ask about {s.name.toLowerCase()}
+              </Link>
+            </div>
+            <Ph label={`${s.name} project example`} t={s.t} />
+          </Reveal>
+        </section>
+      ))}
+      <Cta />
+    </>
+  );
+}
